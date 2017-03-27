@@ -5,8 +5,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 
-
-
 // =====================
 // EXPRESS CONFIGURATION
 // =====================
@@ -16,7 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 
-// bodyParser
+// bodyParser to deal with different types of returns from the http requests
 app.use(bodyParser.json()); // "Returns middleware that only parses json"
 app.use(bodyParser.urlencoded({extended: true})); //"Returns middleware that only parses urlencoded bodies"
 app.use(bodyParser.text()); // "Returns middleware that only parses text"

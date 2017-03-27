@@ -1,62 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-
-	<title>Friend Finder</title>
-
-	<link rel="stylesheet" href="styles.css">
-	<!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/full.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
 </head>
-
 <body>
-	<div class="view">
-    <!--Intro content-->
-    <div class="full-bg-img flex-center">
-    </div>
-	<div class="container">
+  <div class="container">
+    <div class="jumbotron" >
+      <h1>Take the survey</h1>
+      <hr>
+      <!-- Instructions -->
+        <p>Answer a few questions about music.</p>
+        <p>Then find a friend with similar tastes.</p>
 
-	<!-- jumbotron -->
-	<div class="jumbotron">
-		<!-- Title -->
-	  <h1>Take the survey</h1>
-		<!-- horizontal line -->
-		<hr>
-		<!-- Instructions -->
-	  	<p>Answer a few questions about music.</p>
-			<p>Then find a friend with similar tastes.</p>
+        <!-- buttons panel  -->
 
-			<!-- buttons panel  -->
+        <p>
+          <!-- survey button -->
+          <a href="/survey">
+          <button type="button" class="btn btn-lg btn-primary" aria-label="Left Align">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            Take the survey
+          </button>
+          </a>
 
-		  <p>
-				<!-- survey button -->
-				<button type="button" class="btn btn-lg btn-primary" aria-label="Left Align">
-					<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-			  	Take the survey
-				</button>
+          <!-- users list button -->
+          <a href="api/users">
+          <button type="button" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+            See all users
+          </button>
+          </a>
+        </p>
+      </div>
+  </div>
+  <footer class="footer">
+      <div class="container">
+         <a text-size=""href="https://github.com/bradleynielsen/Friend-Finder---Node-and-Express-Servers">GitHub Repo</a></p>
+      </div>
+    </footer>
 
-				<!-- users list button -->
-				<button type="button" class="btn btn-default btn-lg">
-			  	<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-					See all users
-				</button>
+<script type="text/javascript">
+  $(".submit").on("click", function(){
 
-		</p>
-	</div>
-
-
-
-
-
-
-	<!-- Footer -->
-
+  });
 
 
-	</div>
-
+</script>
 
 </body>
-<script>console.log("loading home.html")</script>
 </html>

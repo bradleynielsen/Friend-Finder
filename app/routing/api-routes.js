@@ -1,12 +1,12 @@
-var friendData = require('../data/friend-data.js');
+var friendData = require('../data/user-data.js');
 
 // get the friend array from the datafile on line 1
 module.exports = function(app) {
-  app.get('api/friends', function (request, response){
+  app.get('api/users', function (request, response){
     response.json(friendData);
   })
 
-  // app.post('api/friends'), function (request, response) {
+  // app.post('api/users'), function (request, response) {
   //
   // }
 

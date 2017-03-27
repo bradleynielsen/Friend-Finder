@@ -1,0 +1,26 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "homework11",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bradleynielsen/Friend-Finder---Node-and-Express-Servers.git"
+  },
+  "keywords": [
+    "portfolio"
+  ],
+  "author": "brad nielsen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bradleynielsen/Friend-Finder---Node-and-Express-Servers/issues"
+  },
+  "homepage": "https://github.com/bradleynielsen/Friend-Finder---Node-and-Express-Servers#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  }
+}

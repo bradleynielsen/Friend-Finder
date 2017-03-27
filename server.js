@@ -11,7 +11,7 @@ var path = require('path');
 
 // basic setup
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 
 // bodyParser to deal with different types of returns from the http requests
@@ -28,7 +28,5 @@ require('./app/routing/html-routes.js')(app);
 
 // Listener to open the express service
 app.listen(PORT, function() {
-  console.log("Express initializing");
-  console.log("Listener locked");
-  console.log("Express scanning on port" + PORT);
+  console.log("Express scanning on port " + PORT);
 })

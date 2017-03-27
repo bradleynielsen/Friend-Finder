@@ -31,9 +31,6 @@ require('./app/routing/html-routes.js')(app);
 // Listener to open the express service
 app.listen(PORT, function() {
   console.log("Express initializing");
-
   console.log("Listener locked");
   console.log("Express scanning on port" + PORT);
-
-
 })

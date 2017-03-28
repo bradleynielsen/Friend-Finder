@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Survey</title>
+
+	<!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+  <!-- Font Awesome Glyphicons -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+	<!-- Chosen -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+
+	<!-- Custom css -->
 	<link rel="stylesheet" href="css/full.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
-	<script src="https://code.jquery.com/jquery.js"></script>
 	<style media="screen">
 		a:hover{text-decoration: none;}
 	</style>
 </head>
+
+
 <body>
 	<div class="container">
     <div class="jumbotron" >
@@ -25,16 +40,17 @@
           </a>
 				</span>
 				<span>
-          <!-- users list button -->
-          <a href="api/users">
+          <!-- friends list button -->
+          <a href="api/friends">
           <button type="button" class="btn btn-default btn-lg">
             <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-            See all users
+            See all friends
           </button>
           </a>
 					</span>
       </p>
     </div>
+
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<h2>Survey Questions</h2>
@@ -72,7 +88,7 @@
 		      	</select>
 
 
-				<h3><strong>Question 3</strong></h3>
+				<!-- <h3><strong>Question 3</strong></h3>
 				<h4>You find it easy to stay relaxed and focused even when there is some pressure.</h4>
 			 	<select data-placeholder="" class="chosen-select" id="q3">
 			 		<option value=""></option>
@@ -161,7 +177,7 @@
 		            <option value="2">2</option>
 		            <option value="3">3</option>
 		            <option value="4">4</option>
-		            <option value="5">5 (Strongly Agree)</option>
+		            <option value="5">5 (Strongly Agree)</option> -->
 		    </select>
 
 			</div>
@@ -181,7 +197,7 @@
 
 		<footer class="footer">
 	    <div class="container">
-				 <a href="/" target="_blank"> Home </a> | <a href="https://friend-finder.herokuapp.com/" target="_blank"> Example </a> | <a text-size=""href="https://github.com/bradleynielsen/Friend-Finder---Node-and-Express-Servers" target="_blank">GitHub Repo</a> | <a text-size=""href="api/users" target="_blank">All Users</a>
+				 <a href="/" target="_blank"> Home </a> | <a href="https://friend-finder.herokuapp.com/" target="_blank"> Example </a> | <a text-size=""href="https://github.com/bradleynielsen/Friend-Finder---Node-and-Express-Servers" target="_blank">GitHub Repo</a> | <a text-size=""href="api/friends" target="_blank">All Friends</a>
 	    </div>
 	  </footer>
 
@@ -191,7 +207,6 @@
 
 
 <script type="text/javascript">
-	console.log("loading survey.html")
 
 	// Chosen CSS
 	var config = {
@@ -208,6 +223,7 @@
 
 	// Capture the form inputs
 	$("#submit").on("click", function(){
+		console.log("submit clicked");
 
 		// Form validation
 		function validateForm() {
@@ -223,6 +239,7 @@
 				isValid = false
 			})
 			return isValid;
+			console.log(isValid);
 		}
 
 		// If all required fields are filled
@@ -235,16 +252,20 @@
 				scores: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val(), ]
 			}
 
-
 			// Grab the URL of the website
 			var currentURL = window.location.origin;
+			console.log(currentURL);
 
 			// AJAX post the data to the friends API.
 			$.post(currentURL + "/api/friends", userData, function(data){
-
+				console.log(userData);
 				// Grab the result from the AJAX post so that the best match's name and photo are displayed.
-				$("#matchName").text(data.name);
-				$('#matchImg').attr("src", data.photo);
+
+				console.log(userData.name);
+				$("#matchName").text(userData.name);
+
+				console.log(userData.photo);
+				$('#matchImg').attr("src", userData.photo);
 
 				// Show the modal with the best match
 				$("#resultsModal").modal('toggle');

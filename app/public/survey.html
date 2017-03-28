@@ -216,8 +216,8 @@
 				</div>
 				<div class="modal-body">
 					<h2 id="matchName"></h2>
-					<img src="http://www.oregonlive.com/mount-st-helens/media/helens_page06_15.jpg" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
-					<!-- <img id="matchImg" src="http://www.oregonlive.com/mount-st-helens/media/helens_page06_15.jpg" alt=""> -->
+					<!-- <img src="http://www.oregonlive.com/mount-st-helens/media/helens_page06_15.jpg" class="img-thumbnail" alt="Cinque Terre" width="304" height="236"> -->
+					<img id="matchImg" src="http://www.oregonlive.com/mount-st-helens/media/helens_page06_15.jpg" alt="" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -231,18 +231,18 @@
 
 <script type="text/javascript">
 
-    // // Chosen CSS
-    // var config = {
-    //   ".chosen-select": {},
-    //   ".chosen-select-deselect": { allow_single_deselect: true },
-    //   ".chosen-select-no-single": { disable_search_threshold: 10 },
-    //   ".chosen-select-no-results": { no_results_text: "Oops, nothing found!" },
-    //   ".chosen-select-width": { width: "95%" }
-    // };
-		//
-    // for (var selector in config) {
-    //   $(selector).chosen(config[selector]);
-    // }
+    // Chosen CSS
+    var config = {
+      ".chosen-select": {},
+      ".chosen-select-deselect": { allow_single_deselect: true },
+      ".chosen-select-no-single": { disable_search_threshold: 10 },
+      ".chosen-select-no-results": { no_results_text: "Oops, nothing found!" },
+      ".chosen-select-width": { width: "95%" }
+    };
+
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
 
     // Capture the form inputs
     $("#submit").on("click", function() {

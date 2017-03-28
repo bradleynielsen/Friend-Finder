@@ -9,9 +9,6 @@
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-  <!-- Font Awesome Glyphicons -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-
   <!-- Chosen -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
@@ -187,7 +184,7 @@
 
 		<!-- Submit Button -->
 		<div>
-			<button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
+			<button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"> <i class="fa fa-check-circle" aria-hidden="true"></i>
 				Submit
 			</button>
 		</div>
@@ -197,7 +194,7 @@
 
 		<footer class="footer">
 	    <div class="container">
-				 <a href="/" target="_blank"> Home </a> | <a href="https://friend-finder.herokuapp.com/" target="_blank"> Example </a> | <a text-size=""href="https://github.com/bradleynielsen/Friend-Finder---Node-and-Express-Servers" target="_blank">GitHub Repo</a> | <a text-size=""href="api/friends" target="_blank">All Friends</a>
+				 <a href="/" target="_blank"> Home </a> | <a text-size=""href="https://github.com/bradleynielsen/Friend-Finder---Node-and-Express-Servers" target="_blank">GitHub Repo</a> | <a text-size=""href="api/friends" target="_blank">All Friends</a>
 	    </div>
 	  </footer>
 
@@ -216,7 +213,6 @@
 				</div>
 				<div class="modal-body">
 					<h2 id="matchName"></h2>
-					<!-- <img src="http://www.oregonlive.com/mount-st-helens/media/helens_page06_15.jpg" class="img-thumbnail" alt="Cinque Terre" width="304" height="236"> -->
 					<img id="matchImg" src="http://www.oregonlive.com/mount-st-helens/media/helens_page06_15.jpg" alt="" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
 				</div>
 				<div class="modal-footer">
@@ -265,9 +261,7 @@
         return isValid;
       }
 
-      // If all required fields are filled
       if (validateForm()) {
-        // Create an object for the user"s data
         var userData = {
           name: $("#name").val(),
           photo: $("#photo").val(),
@@ -285,13 +279,10 @@
           ]
         };
 
-        // Grab the URL of the website
         var currentURL = window.location.origin;
 
-        // AJAX post the data to the friends API.
         $.post(currentURL + "/api/friends", userData, function(data) {
 
-          // Grab the result from the AJAX post so that the best match's name and photo are displayed.
           $("#matchName").text(data.name);
           $("#matchImg").attr("src", data.photo);
 

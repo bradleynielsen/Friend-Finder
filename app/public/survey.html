@@ -6,11 +6,9 @@
 
 	<!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-  <!-- Font Awesome Glyphicons -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery.js"></script>
 
 	<!-- Chosen -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
@@ -88,7 +86,7 @@
 		      	</select>
 
 
-				<!-- <h3><strong>Question 3</strong></h3>
+				<h3><strong>Question 3</strong></h3>
 				<h4>You find it easy to stay relaxed and focused even when there is some pressure.</h4>
 			 	<select data-placeholder="" class="chosen-select" id="q3">
 			 		<option value=""></option>
@@ -177,7 +175,7 @@
 		            <option value="2">2</option>
 		            <option value="3">3</option>
 		            <option value="4">4</option>
-		            <option value="5">5 (Strongly Agree)</option> -->
+		            <option value="5">5 (Strongly Agree)</option>
 		    </select>
 
 			</div>
@@ -209,37 +207,37 @@
 <script type="text/javascript">
 
 	// Chosen CSS
-	var config = {
-		'.chosen-select'           : {},
-		'.chosen-select-deselect'  : {allow_single_deselect:true},
-		'.chosen-select-no-single' : {disable_search_threshold:10},
-		'.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-		'.chosen-select-width'     : {width:"95%"}
-	}
-
-	for (var selector in config) {
-		$(selector).chosen(config[selector]);
-	}
+	// var config = {
+	// 	'.chosen-select'           : {},
+	// 	'.chosen-select-deselect'  : {allow_single_deselect:true},
+	// 	'.chosen-select-no-single' : {disable_search_threshold:10},
+	// 	'.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+	// 	'.chosen-select-width'     : {width:"95%"}
+	// }
+	//
+	// for (var selector in config) {
+	// 	$(selector).chosen(config[selector]);
+	// }
 
 	// Capture the form inputs
-	$("#submit").on("click", function(){
-		console.log("submit clicked");
+	$("#submit").on("click", function() {
 
 		// Form validation
 		function validateForm() {
 			var isValid = true;
-			$('.form-control').each(function() {
-				if ( $(this).val() === '' )
-				isValid = false;
+			$(".form-control").each(function() {
+				if ($(this).val() === "") {
+					isValid = false;
+				}
 			});
 
-			$('.chosen-select').each(function() {
+			$(".chosen-select").each(function() {
 
-				if( $(this).val() === "")
-				isValid = false
-			})
+				if ($(this).val() === "") {
+					isValid = false;
+				}
+			});
 			return isValid;
-			console.log(isValid);
 		}
 
 		// If all required fields are filled
@@ -249,22 +247,35 @@
 			var userData = {
 				name: $("#name").val(),
 				photo: $("#photo").val(),
-				scores: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val(), ]
+				scores: [
+					$("#q1").val(),
+					$("#q2").val(),
+					$("#q3").val(),
+					$("#q4").val(),
+					$("#q5").val(),
+					$("#q6").val(),
+					$("#q7").val(),
+					$("#q8").val(),
+					$("#q9").val(),
+					$("#q10").val(),
+				]
 			}
+			console.log("posting userData");
+			console.log("user data: " + userData);
 
 			// Grab the URL of the website
 			var currentURL = window.location.origin;
-			console.log(currentURL);
+			console.log("currentURL: " + currentURL);
 
 			// AJAX post the data to the friends API.
-			$.post(currentURL + "/api/friends", userData, function(data){
-				console.log(userData);
+			$.post( "/api/friends", userData, function(data){
+				console.log("userData: " + userData);
 				// Grab the result from the AJAX post so that the best match's name and photo are displayed.
 
-				console.log(userData.name);
-				$("#matchName").text(userData.name);
+				console.log("userData.name: " + userData.name);
+				$("#matchName").text("userData.name: " + userData.name);
 
-				console.log(userData.photo);
+				console.log("userData.photo: " + userData.photo);
 				$('#matchImg').attr("src", userData.photo);
 
 				// Show the modal with the best match

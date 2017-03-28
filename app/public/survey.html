@@ -4,13 +4,15 @@
 <head>
 	<title>Survey</title>
 
-	<!-- Latest compiled and minified CSS & JS -->
+  <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-	<script src="https://code.jquery.com/jquery.js"></script>
 
-	<!-- Chosen -->
+  <!-- Font Awesome Glyphicons -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+  <!-- Chosen -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
 
@@ -201,96 +203,109 @@
 
 
 	</div><!-- /main container -->
+
+	<!-- Modal -->
+	<div id="resultsModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h2 class="modal-title"><strong>Best Match</strong></h2>
+				</div>
+				<div class="modal-body">
+					<h2 id="matchName"></h2>
+					<img src="http://www.oregonlive.com/mount-st-helens/media/helens_page06_15.jpg" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
+					<!-- <img id="matchImg" src="http://www.oregonlive.com/mount-st-helens/media/helens_page06_15.jpg" alt=""> -->
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
 </body>
 
 
 <script type="text/javascript">
 
-	// Chosen CSS
-	// var config = {
-	// 	'.chosen-select'           : {},
-	// 	'.chosen-select-deselect'  : {allow_single_deselect:true},
-	// 	'.chosen-select-no-single' : {disable_search_threshold:10},
-	// 	'.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-	// 	'.chosen-select-width'     : {width:"95%"}
-	// }
-	//
-	// for (var selector in config) {
-	// 	$(selector).chosen(config[selector]);
-	// }
+    // // Chosen CSS
+    // var config = {
+    //   ".chosen-select": {},
+    //   ".chosen-select-deselect": { allow_single_deselect: true },
+    //   ".chosen-select-no-single": { disable_search_threshold: 10 },
+    //   ".chosen-select-no-results": { no_results_text: "Oops, nothing found!" },
+    //   ".chosen-select-width": { width: "95%" }
+    // };
+		//
+    // for (var selector in config) {
+    //   $(selector).chosen(config[selector]);
+    // }
 
-	// Capture the form inputs
-	$("#submit").on("click", function() {
+    // Capture the form inputs
+    $("#submit").on("click", function() {
 
-		// Form validation
-		function validateForm() {
-			var isValid = true;
-			$(".form-control").each(function() {
-				if ($(this).val() === "") {
-					isValid = false;
-				}
-			});
+      // Form validation
+      function validateForm() {
+        var isValid = true;
+        $(".form-control").each(function() {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
 
-			$(".chosen-select").each(function() {
+        $(".chosen-select").each(function() {
 
-				if ($(this).val() === "") {
-					isValid = false;
-				}
-			});
-			return isValid;
-		}
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+        return isValid;
+      }
 
-		// If all required fields are filled
-		if (validateForm() == true)
-		{
-			// Create an object for the user's data
-			var userData = {
-				name: $("#name").val(),
-				photo: $("#photo").val(),
-				scores: [
-					$("#q1").val(),
-					$("#q2").val(),
-					$("#q3").val(),
-					$("#q4").val(),
-					$("#q5").val(),
-					$("#q6").val(),
-					$("#q7").val(),
-					$("#q8").val(),
-					$("#q9").val(),
-					$("#q10").val(),
-				]
-			}
-			console.log("posting userData");
-			console.log("user data: " + userData);
+      // If all required fields are filled
+      if (validateForm()) {
+        // Create an object for the user"s data
+        var userData = {
+          name: $("#name").val(),
+          photo: $("#photo").val(),
+          scores: [
+            $("#q1").val(),
+            $("#q2").val(),
+            $("#q3").val(),
+            $("#q4").val(),
+            $("#q5").val(),
+            $("#q6").val(),
+            $("#q7").val(),
+            $("#q8").val(),
+            $("#q9").val(),
+            $("#q10").val()
+          ]
+        };
 
-			// Grab the URL of the website
-			var currentURL = window.location.origin;
-			console.log("currentURL: " + currentURL);
+        // Grab the URL of the website
+        var currentURL = window.location.origin;
 
-			// AJAX post the data to the friends API.
-			$.post( "/api/friends", userData, function(data){
-				console.log("userData: " + userData);
-				// Grab the result from the AJAX post so that the best match's name and photo are displayed.
+        // AJAX post the data to the friends API.
+        $.post(currentURL + "/api/friends", userData, function(data) {
 
-				console.log("userData.name: " + userData.name);
-				$("#matchName").text("userData.name: " + userData.name);
+          // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+          $("#matchName").text(data.name);
+          $("#matchImg").attr("src", data.photo);
 
-				console.log("userData.photo: " + userData.photo);
-				$('#matchImg').attr("src", userData.photo);
+          // Show the modal with the best match
+          $("#resultsModal").modal("toggle");
 
-				// Show the modal with the best match
-				$("#resultsModal").modal('toggle');
+        });
+      }
+      else {
+        alert("Please fill out all fields before submitting!");
+      }
 
-			});
-		}
-		else
-		{
-			alert("Please fill out all fields before submitting!");
-		}
-
-		return false;
-	});
-
+      return false;
+		});
 </script>
 
 </html>
